@@ -1,0 +1,20 @@
+# Logs
+system_watchdog_logs/
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Backup files
+*.bak

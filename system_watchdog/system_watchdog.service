@@ -1,0 +1,11 @@
+[Unit]
+Description=System Hardware Watchdog
+After=network.target
+
+[Service]
+ExecStart=/home/USERNAME/system_watchdog/watchdog_monitor.sh
+Restart=always
+User=USERNAME
+
+[Install]
+WantedBy=multi-user.target
