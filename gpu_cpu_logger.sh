@@ -54,6 +54,17 @@ while true; do
         CPU_TEMP="sensors command not found. Install lm-sensors package with: sudo apt install lm-sensors"
     fi
     
+    # Check if ipmi-sensors is available
+    if command -v ipmi-sensors &> /dev/null; then
+        # Flush cache and get IPMI sensor data, filtering out N/A values
+        IPMI_INFO=$(sudo ipmi-sensors --flush-cache && sudo ipmi-sensors | grep -v N/A)
+        if [ -z "$IPMI_INFO" ]; then
+            IPMI_INFO="No IPMI sensor data available or all values are N/A."
+        fi
+    else
+        IPMI_INFO="ipmi-sensors command not found. Install FreeIPMI package with: sudo apt install freeipmi"
+    fi
+    
     # Log the information
     {
         echo "========================================================"
@@ -62,6 +73,9 @@ while true; do
         echo ""
         echo "[$TIMESTAMP] CPU Temperature:"
         echo "$CPU_TEMP"
+        echo ""
+        echo "[$TIMESTAMP] IPMI Sensor Information:"
+        echo "$IPMI_INFO"
         echo "========================================================"
         echo ""
     } >> "$LOG_FILE"

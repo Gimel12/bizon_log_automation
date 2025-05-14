@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=root
-ExecStart=/bin/bash /path/to/gpu_cpu_logger.sh
+ExecStart=/bin/bash /home/bizon/bizon_log_automation/gpu_cpu_logger.sh
 Restart=always
 RestartSec=10
 StandardOutput=syslog
